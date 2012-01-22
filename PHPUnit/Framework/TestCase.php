@@ -1275,6 +1275,20 @@ abstract class PHPUnit_Framework_TestCase extends PHPUnit_Framework_Assert imple
     }
 
     /**
+     * Returns a mock for the specified function,
+     *
+     * @param  string  $functionName
+     * @param  string  $targetNamespace
+     * @return PHPUnit_Framework_MockObject_MockFunction
+     */
+    public function getFunctionMock($functionName, $targetNamespace)
+    {
+        $mockFunction = PHPUnit_Framework_MockObject_Generator::getFunctionMock($functionName, $targetNamespace);
+        $this->mockObjects[] = $mockFunction;
+        return $mockFunction;
+    }
+
+    /**
      * Returns a builder object to create mock objects using a fluent interface.
      *
      * @param  string $className
